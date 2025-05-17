@@ -19,5 +19,5 @@ ignition/deployments/chain-31337
 # logs
 .gitignore
 .env
-/resources
-/node_modules
+./resources
+./node_modules
