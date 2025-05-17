@@ -1,0 +1,23 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+    backdrop-filter: blur(10px);
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
+}
+
+.card {
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #22c55e, #a855f7);
+}

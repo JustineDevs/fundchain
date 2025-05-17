@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Explore Projects - Fundchain</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <nav class="fixed w-full bg-gray-800 bg-opacity-75 p-4">
+        <div class="container mx-auto flex justify-between">
+            <a href="/" class="text-2xl font-bold text-green-400">Fundchain</a>
+            <div class="space-x-4">
+                <a href="/explore" class="hover:text-green-400">Explore</a>
+                <a href="/how-it-works" class="hover:text-green-400">How It Works</a>
+                <a href="/about" class="hover:text-green-400">About</a>
+                <a href="/login" class="hover:text-green-400">Login</a>
+                <a href="/signup" class="hover:text-green-400">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto pt-20 pb-10">
+        <h1 class="text-4xl font-bold text-green-400 mb-6">Explore Projects</h1>
+        <form th:action="@{/projects}" method="get" class="mb-6">
+            <input type="text" name="search" class="w-full p-2 rounded bg-gray-800 border border-green-400 text-white" placeholder="Search projects...">
+            <button type="submit" class="mt-2 px-4 py-2 bg-green-400 text-gray-900 rounded hover:bg-green-500">Search</button>
+        </form>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div th:each="project : ${projects}" class="bg-gray-800 rounded-lg overflow-hidden transform hover:scale-105 transition">
+                <img th:src="${project.imageUrl}" class="w-full h-48 object-cover" alt="Project Image">
+                <div class="p-4">
+                    <h2 class="text-xl font-bold" th:text="${project.title}"></h2>
+                    <p class="text-gray-400" th:text="${project.shortDescription}"></p>
+                    <p>Goal: <span th:text="${project.fundingGoal}"></span> ETH</p>
+                    <p>Raised: <span th:text="${#ethereum.getBalance(project.ethereumAddress)}"></span> ETH</p>
+                    <a th:href="@{/projects/{id}(id=${project.id})}" class="inline-block mt-2 px-4 py-2 bg-green-400 text-gray-900 rounded hover:bg-green-500">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/scripts.js"></script>
+</body>
+</html>
